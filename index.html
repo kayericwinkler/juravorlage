@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Juravorlage – Word-Vorlage für juristische Hausarbeiten</title>
+    <meta
+      name="description"
+      content="Erstellt im Browser eine vorformatierte Word-Vorlage für juristische Haus- und Seminararbeiten nach den Vorgaben des Lehrstuhls."
+    />
+    <meta name="theme-color" content="#1f3a5f" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon" data-icon="scale"></span>
+        <div>
+          <h1>Juravorlage</h1>
+          <p>Word-Vorlage für juristische Hausarbeiten nach den Vorgaben des Lehrstuhls</p>
+        </div>
+      </div>
+      <nav class="header-links">
+        <a id="docs-link" target="_blank" rel="noopener" hidden><span data-icon="book-open"></span>Anleitung</a>
+        <a id="repo-link" target="_blank" rel="noopener" hidden><span data-icon="external-link"></span>Quellcode</a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <form id="settings-form" class="panel" autocomplete="off" novalidate>
+        <h2>Formatierung</h2>
+
+        <fieldset>
+          <legend>Schrift</legend>
+          <div class="grid">
+            <label class="field span-2">
+              <span>Schriftart</span>
+              <select name="font"></select>
+            </label>
+            <label class="field">
+              <span>Text</span>
+              <span class="unit" data-unit="pt"><input name="textPt" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+            <label class="field">
+              <span>Fußnoten</span>
+              <span class="unit" data-unit="pt"><input name="footnotePt" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+            <label class="field span-2">
+              <span>Zeilenabstand</span>
+              <select name="lineSpacing"></select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Seitenränder</legend>
+          <div class="grid">
+            <label class="field">
+              <span>Oben</span>
+              <span class="unit" data-unit="cm"><input name="top" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+            <label class="field">
+              <span>Unten</span>
+              <span class="unit" data-unit="cm"><input name="bottom" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+            <label class="field">
+              <span>Seitlich</span>
+              <span class="unit" data-unit="cm"><input name="side" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+            <label class="field">
+              <span>Korrekturrand</span>
+              <span class="unit" data-unit="cm"><input name="correction" type="number" step="0.5" inputmode="decimal" /></span>
+            </label>
+          </div>
+          <div class="field">
+            <span id="label-correction-side">Korrekturrand auf der Seite</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="label-correction-side">
+              <label><input type="radio" name="correctionSide" value="links" /><span>Links</span></label>
+              <label><input type="radio" name="correctionSide" value="rechts" /><span>Rechts</span></label>
+            </div>
+          </div>
+          <p class="hint">Der Korrekturrand gilt nur im Haupttext. Alle anderen Seiten haben beidseitig den seitlichen Rand.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Gliederung</legend>
+          <div class="segmented" role="radiogroup" aria-label="Nummerierung der Überschriften">
+            <label>
+              <input type="radio" name="numbering" value="juristisch" />
+              <span>Juristisch<small>A. I. 1. a) aa) (1) (a)</small></span>
+            </label>
+            <label>
+              <input type="radio" name="numbering" value="numerisch" />
+              <span>Numerisch<small>1. 1.1 1.1.1 1.1.1.1</small></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Seitenzahlen</legend>
+          <div class="field">
+            <span id="label-roman">Seiten vor dem Haupttext</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="label-roman">
+              <label><input type="radio" name="romanCase" value="klein" /><span>ii, iii, iv</span></label>
+              <label><input type="radio" name="romanCase" value="gross" /><span>II, III, IV</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span id="label-align">Position</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="label-align">
+              <label><input type="radio" name="pageNumberAlign" value="zentriert" /><span>Zentriert</span></label>
+              <label><input type="radio" name="pageNumberAlign" value="rechts" /><span>Rechts</span></label>
+            </div>
+          </div>
+          <p class="hint">Das Deckblatt bleibt ohne Seitenzahl, der Haupttext beginnt mit Seite 1.</p>
+        </fieldset>
+      </form>
+
+      <section class="panel">
+        <h2>Abschnitte</h2>
+        <p class="hint">Reihenfolge durch Ziehen ändern, Abschnitte ein- oder ausschalten.</p>
+        <ol id="sections-list" class="sections"></ol>
+
+        <div class="actions">
+          <button id="download" type="button" class="primary"><span data-icon="download"></span>Word-Vorlage herunterladen</button>
+          <div class="secondary-actions">
+            <button id="copy-link" type="button"><span data-icon="link"></span>Link zu diesen Einstellungen kopieren</button>
+            <button id="reset" type="button"><span data-icon="rotate-ccw"></span>Zurücksetzen</button>
+          </div>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+          <p class="hint">Die Datei wird in Ihrem Browser erzeugt. Es werden keine Daten übertragen.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "juravorlage",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "docx": "^9.15.3",
+    "lucide": "^1.72.0"
+  },
+  "scripts": {
+    "dev": "bun ./index.html",
+    "build": "bun scripts/build.ts",
+    "check": "tsc --noEmit",
+    "sample": "bun scripts/generate.ts",
+    "preview": "python3 -m http.server 4174 -d dist"
+  },
+  "license": "MIT",
+  "private": true
+}
