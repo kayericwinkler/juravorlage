@@ -118,6 +118,13 @@ h1 {
   padding: 0 16px 16px;
 }
 
+/* Abstand unter der Kopfzeile wächst mit der Fensterhöhe und fällt bei niedrigen Fenstern auf null. */
+@media (min-width: 761px) {
+  .layout {
+    padding-top: clamp(0px, (100dvh - 570px) * 0.5, 140px);
+  }
+}
+
 @media (max-width: 760px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
