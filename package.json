@@ -13,8 +13,7 @@
     "dev": "bun ./index.html",
     "build": "bun scripts/build.ts",
     "check": "tsc --noEmit",
-    "sample": "bun scripts/generate.ts",
-    "preview": "python3 -m http.server 4174 -d dist"
+    "sample": "bun scripts/generate.ts"
   },
   "license": "MIT",
   "private": true

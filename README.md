@@ -10,8 +10,7 @@ Die Datei entsteht vollständig im Browser; es werden keine Daten übertragen.
 bun install
 bun run dev      # Entwicklungsserver
 bun run check    # Typprüfung
-bun run build    # statischer Build nach dist/ (inkl. PWA-Dateien)
-bun run preview  # dist/ lokal ausliefern (http://localhost:4174)
+bun run build    # statischer Build nach dist/
 bun run sample   # Beispieldokumente nach out/
 ```
 

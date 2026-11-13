@@ -16,7 +16,7 @@ const ICONS = {
 
 export type IconName = keyof typeof ICONS;
 
-export const icon = (name: IconName): SVGElement => createElement(ICONS[name], { "aria-hidden": "true" });
+export const icon = (name: IconName): SVGElement => createElement(ICONS[name], { class: "lucide", "aria-hidden": "true" });
 
 /** Ersetzt alle Platzhalter <span data-icon="name"> unterhalb von root durch das Icon. */
 export function mountIcons(root: ParentNode): void {

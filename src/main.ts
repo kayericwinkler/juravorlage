@@ -1,6 +1,5 @@
 // Einstieg: verbindet Store, Speicherung und die UI-Module.
 import { DOCS_URL, REPO_URL } from "./config";
-import { registerServiceWorker } from "./pwa/register";
 import { loadSettings, saveSettings } from "./state/persistence";
 import { createStore } from "./state/store";
 import { mountActions } from "./ui/actions";
@@ -51,5 +50,3 @@ document.addEventListener("keydown", (e) => {
   const active = document.activeElement as HTMLElement | null;
   if (active?.classList.contains("tip-btn")) active.blur();
 });
-
-registerServiceWorker();
