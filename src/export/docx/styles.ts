@@ -131,7 +131,7 @@ export function documentStyles(format: FormatSettings): IStylesOptions {
       basedOn: "Normal",
       run: { size: ptToHalfPt(format.footnotePt) },
       // Hängender Einzug: Der Tab nach dem Fußnotenzeichen springt auf den Einzug, der Text steht bündig.
-      paragraph: { spacing: { after: 0, line: lineSpacing(1) }, indent: { left: mmToTwip(5), hanging: mmToTwip(5) } },
+      paragraph: { spacing: { after: 0, line: lineSpacing(format.footnoteLineSpacing) }, indent: { left: mmToTwip(5), hanging: mmToTwip(5) } },
     },
     {
       id: FOOTER_STYLE,

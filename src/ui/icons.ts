@@ -1,5 +1,5 @@
 // Lucide-Icons. Nur die hier importierten Icons landen im Bundle.
-import { BookOpen, ChevronDown, ChevronUp, Download, ExternalLink, GripVertical, Link, RotateCcw, Scale, createElement, type IconNode } from "lucide";
+import { BookOpen, ChevronDown, ChevronUp, Download, ExternalLink, GripVertical, Info, Link, RotateCcw, Scale, createElement, type IconNode } from "lucide";
 
 const ICONS = {
   "book-open": BookOpen,
@@ -8,6 +8,7 @@ const ICONS = {
   download: Download,
   "external-link": ExternalLink,
   "grip-vertical": GripVertical,
+  info: Info,
   link: Link,
   "rotate-ccw": RotateCcw,
   scale: Scale,

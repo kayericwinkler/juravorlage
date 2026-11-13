@@ -10,8 +10,8 @@
   --accent-soft: #e6ecf4;
   --radius: 6px;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,27 +57,30 @@ svg.lucide {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px 16px;
   flex-wrap: wrap;
-  max-width: 1040px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 16px 12px;
+  padding: 10px 16px 8px;
 }
 
 .brand {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  min-width: 0;
 }
 
 .brand-icon {
+  align-self: center;
   color: var(--accent);
-  font-size: 1.9rem;
+  font-size: 1.5rem;
 }
 
 h1 {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 650;
 }
 
@@ -107,12 +110,12 @@ h1 {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 12px;
   align-items: start;
-  max-width: 1040px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px 32px;
+  padding: 0 16px 16px;
 }
 
 @media (max-width: 760px) {
@@ -125,26 +128,23 @@ h1 {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px 18px 18px;
+  padding: 10px 14px 12px;
 }
 
 h2 {
-  margin: 0 0 12px;
+  margin: 0 0 6px;
   font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 650;
-}
-
-.hint {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
 }
 
 /* Formular */
 
 fieldset {
   margin: 0;
-  padding: 12px 0 14px;
+  padding: 8px 0 10px;
   border: 0;
   border-top: 1px solid var(--border);
   min-width: 0;
@@ -154,7 +154,10 @@ legend {
   padding: 0;
   float: left;
   width: 100%;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
   font-weight: 600;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
@@ -169,39 +172,62 @@ legend + * {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
+}
+
+.grid.cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid.cols-5 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.7fr);
+}
+
+.grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .span-2 {
   grid-column: span 2;
 }
 
-@media (max-width: 420px) {
-  .grid {
+@media (max-width: 760px) {
+  .grid.cols-6 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid.cols-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid.cols-2 {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .field > span:first-child {
-  font-size: 0.88rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--muted);
 }
 
 fieldset > .field {
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 select,
 input[type="number"] {
   width: 100%;
-  height: 34px;
+  height: 30px;
   padding: 0 8px;
   font: inherit;
   color: inherit;
@@ -270,17 +296,27 @@ input[type="number"] {
   cursor: pointer;
 }
 
+.segmented label {
+  min-width: 0;
+}
+
 .segmented label > span {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  padding: 5px 8px;
+  display: block;
+  height: 100%;
+  padding: 2px 8px;
+  line-height: 24px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .segmented small {
+  display: block;
+  margin-top: -4px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--muted);
   font-size: 0.8rem;
 }
@@ -305,18 +341,18 @@ input[type="number"] {
 
 .sections {
   list-style: none;
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .sections li {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 8px 5px 2px;
+  padding: 2px 8px 2px 2px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -337,6 +373,9 @@ input[type="number"] {
 .section-label {
   flex: 1;
   min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .icon-button {
@@ -423,8 +462,8 @@ input[type="number"] {
 /* Aktionen */
 
 .actions {
-  margin-top: 18px;
-  padding-top: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
 }
 
@@ -437,13 +476,35 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 34px;
-  padding: 6px 12px;
+  min-height: 32px;
+  padding: 4px 12px;
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   cursor: pointer;
+  min-width: 0;
+}
+
+.actions button .label {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.primary-row {
+  display: flex;
+  gap: 8px;
+}
+
+.actions .tip-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex: none;
+  font-size: 1.15rem;
+  border-radius: var(--radius);
 }
 
 .actions button:hover {
@@ -451,8 +512,8 @@ button {
 }
 
 .actions button.primary {
-  width: 100%;
-  min-height: 44px;
+  flex: 1;
+  min-height: 40px;
   font-weight: 600;
   color: var(--accent-text);
   background: var(--accent);
@@ -470,9 +531,9 @@ button {
 
 .secondary-actions {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
+  align-items: center;
 }
 
 .secondary-actions button {
@@ -480,13 +541,182 @@ button {
   font-size: 0.9rem;
 }
 
+/* Der lange Link-Button gibt zuerst Platz ab, „Zurücksetzen“ bleibt lesbar. */
+.secondary-actions #copy-link {
+  flex: 1 1 0;
+}
+
+.secondary-actions #reset {
+  flex: 0 1 auto;
+}
+
 .status {
   min-height: 1.4em;
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   font-size: 0.9rem;
   color: var(--accent);
 }
 
 .status.is-error {
   color: #c0392b;
+}
+
+/* Tooltips (Info-Icon neben Überschriften) */
+
+.tip {
+  position: relative;
+  display: inline-flex;
+  margin-left: auto;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.tip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: help;
+}
+
+.tip-btn svg.lucide {
+  width: 14px;
+  height: 14px;
+}
+
+.actions .tip-btn svg.lucide {
+  width: 18px;
+  height: 18px;
+}
+
+.tip-btn:hover,
+.tip.is-open .tip-btn {
+  color: var(--accent);
+}
+
+.tip-body {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 6px);
+  right: 0;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 32px));
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.12s;
+  pointer-events: none;
+}
+
+.tip.tip-up .tip-body {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.tip:hover .tip-body,
+.tip:focus-within .tip-body,
+.tip.is-open .tip-body {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Auswahlfelder: modernes Styling nur, wo appearance: base-select verfügbar ist */
+
+@supports (appearance: base-select) {
+  select,
+  select::picker(select) {
+    appearance: base-select;
+  }
+
+  select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  select > button {
+    all: unset;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    min-width: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  select selectedcontent {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  select::picker-icon {
+    color: var(--muted);
+    transition: rotate 0.15s;
+  }
+
+  select:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  select::picker(select) {
+    margin-top: 4px;
+    padding: 4px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
+  }
+
+  select option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  select option:hover,
+  select option:focus-visible {
+    background: var(--accent-soft);
+    outline: none;
+  }
+
+  select option:checked {
+    color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+
+  select option::checkmark {
+    order: 1;
+    margin-left: auto;
+  }
 }

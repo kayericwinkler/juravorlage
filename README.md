@@ -1,4 +1,4 @@
-# Juravorlage
+# Jura-Vorlage
 
 Erstellt im Browser eine vorformatierte Word-Vorlage (.docx) für juristische Haus- und Seminararbeiten.
 Formatvorgaben des Lehrstuhls einstellen, Abschnitte wählen und sortieren, herunterladen.

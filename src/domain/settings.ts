@@ -60,6 +60,8 @@ export interface FormatSettings {
   readonly textPt: number;
   readonly footnotePt: number;
   readonly lineSpacing: LineSpacing;
+  /** Zeilenabstand der Fußnoten (Formatvorlage „FootnoteText“). */
+  readonly footnoteLineSpacing: LineSpacing;
   readonly margins: Margins;
   readonly numbering: NumberingScheme;
   /** Schreibweise der römischen Seitenzahlen vor dem Haupttext. */
@@ -79,6 +81,7 @@ export const DEFAULT_SETTINGS: Settings = {
   textPt: 12,
   footnotePt: 10,
   lineSpacing: 1.5,
+  footnoteLineSpacing: 1,
   margins: { top: 20, bottom: 20, side: 20, correction: 70, correctionSide: "rechts" },
   numbering: "juristisch",
   romanCase: "klein",

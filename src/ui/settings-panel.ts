@@ -5,12 +5,15 @@ import type { Store } from "../state/store";
 
 const MARGIN_FIELDS = ["top", "bottom", "side", "correction"] as const;
 const PT_FIELDS = ["textPt", "footnotePt"] as const;
+const SPACING_FIELDS = ["lineSpacing", "footnoteLineSpacing"] as const;
 const RADIO_FIELDS = ["numbering", "romanCase", "pageNumberAlign"] as const;
 
 const formatNumber = (n: number) => String(Math.round(n * 100) / 100);
 
 function fillSelect(select: HTMLSelectElement, options: readonly { value: string; label: string }[]): void {
-  select.replaceChildren(...options.map(({ value, label }) => new Option(label, value)));
+  // Ein evtl. vorhandenes <button><selectedcontent> (Select-Styling) bleibt erhalten.
+  for (const old of select.querySelectorAll("option")) old.remove();
+  select.append(...options.map(({ value, label }) => new Option(label, value)));
 }
 
 export function mountSettingsPanel(form: HTMLFormElement, store: Store<Settings>): void {
@@ -18,10 +21,12 @@ export function mountSettingsPanel(form: HTMLFormElement, store: Store<Settings>
   const radios = (name: string) => form.elements.namedItem(name) as RadioNodeList;
 
   fillSelect(input("font") as HTMLSelectElement, FONTS.map((f) => ({ value: f, label: f })));
-  fillSelect(
-    input("lineSpacing") as HTMLSelectElement,
-    LINE_SPACINGS.map((v) => ({ value: String(v), label: `${v.toLocaleString("de-DE", { minimumFractionDigits: 1 })}-fach` })),
-  );
+  for (const name of SPACING_FIELDS) {
+    fillSelect(
+      input(name) as HTMLSelectElement,
+      LINE_SPACINGS.map((v) => ({ value: String(v), label: `${v.toLocaleString("de-DE", { minimumFractionDigits: 1 })} x` })),
+    );
+  }
   for (const name of PT_FIELDS) Object.assign(input(name), { min: LIMITS[name].min, max: LIMITS[name].max });
   for (const name of MARGIN_FIELDS) {
     Object.assign(input(name), { min: LIMITS.marginMm.min / 10, max: LIMITS.marginMm.max / 10 });
@@ -34,7 +39,7 @@ export function mountSettingsPanel(form: HTMLFormElement, store: Store<Settings>
       if (el !== document.activeElement && el.value !== value) el.value = value;
     };
     set("font", s.font);
-    set("lineSpacing", String(s.lineSpacing));
+    for (const name of SPACING_FIELDS) set(name, String(s[name]));
     for (const name of PT_FIELDS) set(name, formatNumber(s[name]));
     for (const name of MARGIN_FIELDS) set(name, formatNumber(s.margins[name] / 10));
     radios("correctionSide").value = s.margins.correctionSide;
@@ -51,6 +56,7 @@ export function mountSettingsPanel(form: HTMLFormElement, store: Store<Settings>
       ...current,
       font: input("font").value,
       lineSpacing: Number(input("lineSpacing").value),
+      footnoteLineSpacing: Number(input("footnoteLineSpacing").value),
       textPt: number("textPt", current.textPt),
       footnotePt: number("footnotePt", current.footnotePt),
       margins: {

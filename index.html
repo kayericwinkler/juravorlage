@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Juravorlage – Word-Vorlage für juristische Hausarbeiten</title>
+    <title>Jura-Vorlage – Word-Vorlage für juristische Hausarbeiten</title>
     <meta
       name="description"
       content="Erstellt im Browser eine vorformatierte Word-Vorlage für juristische Haus- und Seminararbeiten nach den Vorgaben des Lehrstuhls."
@@ -16,10 +16,8 @@
     <header class="app-header">
       <div class="brand">
         <span class="brand-icon" data-icon="scale"></span>
-        <div>
-          <h1>Juravorlage</h1>
-          <p>Word-Vorlage für juristische Hausarbeiten nach den Vorgaben des Lehrstuhls</p>
-        </div>
+        <h1>Jura-Vorlage</h1>
+        <p>Erstelle eine Word-Vorlage für juristische Hausarbeiten nach den Vorgaben des Lehrstuhls</p>
       </div>
       <nav class="header-links">
         <a id="docs-link" target="_blank" rel="noopener" hidden><span data-icon="book-open"></span>Anleitung</a>
@@ -33,29 +31,33 @@
 
         <fieldset>
           <legend>Schrift</legend>
-          <div class="grid">
+          <div class="grid cols-6">
             <label class="field span-2">
               <span>Schriftart</span>
-              <select name="font"></select>
+              <select name="font"><button><selectedcontent></selectedcontent></button></select>
             </label>
             <label class="field">
-              <span>Text</span>
+              <span>Größe Text</span>
               <span class="unit" data-unit="pt"><input name="textPt" type="number" step="0.5" inputmode="decimal" /></span>
             </label>
             <label class="field">
-              <span>Fußnoten</span>
+              <span>Größe Fußnoten</span>
               <span class="unit" data-unit="pt"><input name="footnotePt" type="number" step="0.5" inputmode="decimal" /></span>
             </label>
-            <label class="field span-2">
-              <span>Zeilenabstand</span>
-              <select name="lineSpacing"></select>
+            <label class="field">
+              <span>Abstand Text</span>
+              <select name="lineSpacing"><button><selectedcontent></selectedcontent></button></select>
+            </label>
+            <label class="field">
+              <span>Abstand Fußnoten</span>
+              <select name="footnoteLineSpacing"><button><selectedcontent></selectedcontent></button></select>
             </label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>Seitenränder</legend>
-          <div class="grid">
+          <legend>Seitenränder <span class="tip"><button type="button" class="tip-btn" aria-label="Hinweis anzeigen" aria-describedby="tip-margins"><span data-icon="info"></span></button><span id="tip-margins" role="tooltip" class="tip-body">Der Korrekturrand gilt nur im Haupttext. Alle anderen Seiten haben beidseitig den seitlichen Rand.</span></span></legend>
+          <div class="grid cols-5">
             <label class="field">
               <span>Oben</span>
               <span class="unit" data-unit="cm"><input name="top" type="number" step="0.5" inputmode="decimal" /></span>
@@ -72,64 +74,67 @@
               <span>Korrekturrand</span>
               <span class="unit" data-unit="cm"><input name="correction" type="number" step="0.5" inputmode="decimal" /></span>
             </label>
-          </div>
-          <div class="field">
-            <span id="label-correction-side">Korrekturrand auf der Seite</span>
-            <div class="segmented" role="radiogroup" aria-labelledby="label-correction-side">
-              <label><input type="radio" name="correctionSide" value="links" /><span>Links</span></label>
-              <label><input type="radio" name="correctionSide" value="rechts" /><span>Rechts</span></label>
+            <div class="field">
+              <span id="label-correction-side">Korrekturrand-Seite</span>
+              <div class="segmented" role="radiogroup" aria-labelledby="label-correction-side">
+                <label><input type="radio" name="correctionSide" value="links" /><span>Links</span></label>
+                <label><input type="radio" name="correctionSide" value="rechts" /><span>Rechts</span></label>
+              </div>
             </div>
           </div>
-          <p class="hint">Der Korrekturrand gilt nur im Haupttext. Alle anderen Seiten haben beidseitig den seitlichen Rand.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Seitenzahlen <span class="tip"><button type="button" class="tip-btn" aria-label="Hinweis anzeigen" aria-describedby="tip-pages"><span data-icon="info"></span></button><span id="tip-pages" role="tooltip" class="tip-body">Das Deckblatt bleibt ohne Seitenzahl, der Haupttext beginnt mit Seite 1.</span></span></legend>
+          <div class="grid cols-2">
+            <div class="field">
+              <span id="label-roman">Seiten vor dem Haupttext</span>
+              <div class="segmented" role="radiogroup" aria-labelledby="label-roman">
+                <label><input type="radio" name="romanCase" value="klein" /><span>ii, iii, iv</span></label>
+                <label><input type="radio" name="romanCase" value="gross" /><span>II, III, IV</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <span id="label-align">Position</span>
+              <div class="segmented" role="radiogroup" aria-labelledby="label-align">
+                <label><input type="radio" name="pageNumberAlign" value="zentriert" /><span>Zentriert</span></label>
+                <label><input type="radio" name="pageNumberAlign" value="rechts" /><span>Rechts</span></label>
+              </div>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset>
           <legend>Gliederung</legend>
-          <div class="segmented" role="radiogroup" aria-label="Nummerierung der Überschriften">
-            <label>
-              <input type="radio" name="numbering" value="juristisch" />
-              <span>Juristisch<small>A. I. 1. a) aa) (1) (a)</small></span>
-            </label>
-            <label>
-              <input type="radio" name="numbering" value="numerisch" />
-              <span>Numerisch<small>1. 1.1 1.1.1 1.1.1.1</small></span>
-            </label>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Seitenzahlen</legend>
-          <div class="field">
-            <span id="label-roman">Seiten vor dem Haupttext</span>
-            <div class="segmented" role="radiogroup" aria-labelledby="label-roman">
-              <label><input type="radio" name="romanCase" value="klein" /><span>ii, iii, iv</span></label>
-              <label><input type="radio" name="romanCase" value="gross" /><span>II, III, IV</span></label>
+          <div class="grid cols-2">
+            <div class="segmented" role="radiogroup" aria-label="Nummerierung der Überschriften">
+              <label>
+                <input type="radio" name="numbering" value="juristisch" />
+                <span>Juristisch<small>A. I. 1. a) aa) (1) (a)</small></span>
+              </label>
+              <label>
+                <input type="radio" name="numbering" value="numerisch" />
+                <span>Numerisch<small>1. 1.1 1.1.1 1.1.1.1</small></span>
+              </label>
             </div>
           </div>
-          <div class="field">
-            <span id="label-align">Position</span>
-            <div class="segmented" role="radiogroup" aria-labelledby="label-align">
-              <label><input type="radio" name="pageNumberAlign" value="zentriert" /><span>Zentriert</span></label>
-              <label><input type="radio" name="pageNumberAlign" value="rechts" /><span>Rechts</span></label>
-            </div>
-          </div>
-          <p class="hint">Das Deckblatt bleibt ohne Seitenzahl, der Haupttext beginnt mit Seite 1.</p>
         </fieldset>
       </form>
 
       <section class="panel">
-        <h2>Abschnitte</h2>
-        <p class="hint">Reihenfolge durch Ziehen ändern, Abschnitte ein- oder ausschalten.</p>
+        <h2>Abschnitte <span class="tip"><button type="button" class="tip-btn" aria-label="Hinweis anzeigen" aria-describedby="tip-sections"><span data-icon="info"></span></button><span id="tip-sections" role="tooltip" class="tip-body">Reihenfolge durch Ziehen ändern, Abschnitte ein- oder ausschalten.</span></span></h2>
         <ol id="sections-list" class="sections"></ol>
 
         <div class="actions">
-          <button id="download" type="button" class="primary"><span data-icon="download"></span>Word-Vorlage herunterladen</button>
+          <div class="primary-row">
+            <button id="download" type="button" class="primary"><span data-icon="download"></span><span class="label">Word-Vorlage herunterladen</span></button>
+            <span class="tip tip-up"><button type="button" class="tip-btn" aria-label="Hinweis zum Datenschutz anzeigen" aria-describedby="tip-privacy"><span data-icon="info"></span></button><span id="tip-privacy" role="tooltip" class="tip-body">Die Datei wird in deinem Browser erzeugt. Es werden keine Daten übertragen.</span></span>
+          </div>
           <div class="secondary-actions">
-            <button id="copy-link" type="button"><span data-icon="link"></span>Link zu diesen Einstellungen kopieren</button>
-            <button id="reset" type="button"><span data-icon="rotate-ccw"></span>Zurücksetzen</button>
+            <button id="copy-link" type="button"><span data-icon="link"></span><span class="label">Link zu diesen Einstellungen kopieren</span></button>
+            <button id="reset" type="button"><span data-icon="rotate-ccw"></span><span class="label">Zurücksetzen</span></button>
           </div>
           <p id="status" class="status" role="status" aria-live="polite"></p>
-          <p class="hint">Die Datei wird in Ihrem Browser erzeugt. Es werden keine Daten übertragen.</p>
         </div>
       </section>
     </main>

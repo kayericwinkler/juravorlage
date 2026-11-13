@@ -51,6 +51,7 @@ export function sanitizeSettings(input: unknown): Settings {
     textPt: num(input.textPt, LIMITS.textPt, d.textPt),
     footnotePt: num(input.footnotePt, LIMITS.footnotePt, d.footnotePt),
     lineSpacing: oneOf(LINE_SPACINGS, input.lineSpacing, d.lineSpacing),
+    footnoteLineSpacing: oneOf(LINE_SPACINGS, input.footnoteLineSpacing, d.footnoteLineSpacing),
     margins: {
       top: num(m.top, LIMITS.marginMm, d.margins.top),
       bottom: num(m.bottom, LIMITS.marginMm, d.margins.bottom),

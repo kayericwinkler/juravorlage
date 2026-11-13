@@ -37,4 +37,19 @@ mountActions(
 // Ein geöffneter Link mit anderen Einstellungen (Hash-Wechsel) wird übernommen.
 window.addEventListener("hashchange", () => store.set(loadSettings()));
 
+// Tooltips: Hover/Fokus laufen über CSS; per Tap (Touch) wird zusätzlich .is-open umgeschaltet.
+document.addEventListener("click", (e) => {
+  const button = (e.target as Element).closest<HTMLElement>(".tip-btn");
+  for (const tip of document.querySelectorAll<HTMLElement>(".tip.is-open")) {
+    if (tip !== button?.parentElement) tip.classList.remove("is-open");
+  }
+  button?.parentElement?.classList.toggle("is-open");
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  for (const tip of document.querySelectorAll(".tip.is-open")) tip.classList.remove("is-open");
+  const active = document.activeElement as HTMLElement | null;
+  if (active?.classList.contains("tip-btn")) active.blur();
+});
+
 registerServiceWorker();
