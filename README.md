@@ -11,7 +11,7 @@ es werden keine Daten übertragen.
 
 [![App starten](https://img.shields.io/badge/App_starten-1f3a5f?style=for-the-badge)](https://kayericwinkler.github.io/juravorlage/)
 
-Ausführliche Beschreibung: folgt.
+Ausführliche Beschreibung: [Anleitung auf Rechtschreiber](https://rechtschreiber.pro/tipps/jura-hausarbeit-word-formatieren/).
 
 ## English
 
